@@ -12,31 +12,30 @@ const storage = {
     }
 }
 
-const state = { todoItems: storage.fetch(), }
 
-const getters = { storeTodoItems: state => state.todoItems }
-
-const mutations = {
-    addOneItem(state, payload) {
-        if (payload !== ``) {
-            const obj = { completed: false, item: payload }
-            localStorage.setItem(payload, JSON.stringify(obj));
-            state.todoItems.push(obj)
+export default {
+    state: { todoItems: storage.fetch() },
+    getters: { storeTodoItems: state => state.todoItems },
+    mutations: {
+        addOneItem(state, payload) {
+            if (payload !== ``) {
+                const obj = { completed: false, item: payload }
+                localStorage.setItem(payload, JSON.stringify(obj));
+                state.todoItems.push(obj)
+            }
+        },
+        removeOneItem(state, payload) {
+            localStorage.removeItem(payload.todoItem.item)
+            state.todoItems.splice(payload.index, 1)
+        },
+        toggleOneComplete(state, payload) {
+            state.todoItems[payload.index].completed = !state.todoItems[payload.index].completed
+            localStorage.removeItem(payload.todoItem.item);
+            localStorage.setItem(payload.todoItem.item, JSON.stringify(payload.todoItem));
+        },
+        clearAllItems(state) {
+            localStorage.clear();
+            state.todoItems = [];
         }
-    },
-    removeOneItem(state, payload) {
-        localStorage.removeItem(payload.todoItem.item)
-        state.todoItems.splice(payload.index, 1)
-    },
-    toggleOneComplete(state, payload) {
-        state.todoItems[payload.index].completed = !state.todoItems[payload.index].completed
-        localStorage.removeItem(payload.todoItem.item);
-        localStorage.setItem(payload.todoItem.item, JSON.stringify(payload.todoItem));
-    },
-    clearAllItems(state) {
-        localStorage.clear();
-        state.todoItems = [];
     }
 }
-
-export default { state, getters, mutations }
