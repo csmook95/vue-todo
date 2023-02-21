@@ -17,35 +17,24 @@
 
 <script>
 import ModalExam from "./common/ModalExam.vue";
-import {mapMutations} from "vuex";
+import { mapMutations } from "vuex";
 
-export default{
-  data(){
-    return{
-      newTodoItem: "",
-      showModal:false
-    }
-  },
-  methods: {
-    ...mapMutations([
-      'addOneItem'
-    ]),
-
-    addTodo(){
-      if(this.newTodoItem!==''){
-        this.addOneItem(this.newTodoItem)
-        this.clearInput();
-      } else{
-        this.showModal=!this.showModal;
-      }
+export default {
+    data: () => ({
+        newTodoItem: ``,
+        showModal: false
+    }),
+    methods: {
+        ...mapMutations([`addOneItem`]),
+        addTodo() {
+            if (this.newTodoItem !== ``) {
+                this.addOneItem(this.newTodoItem)
+                this.clearInput();
+            } else this.showModal = !this.showModal;
+        },
+        clearInput() { this.newTodoItem = ``; }
     },
-    clearInput(){
-      this.newTodoItem = "";
-    }
-  },
-  components:{
-    ModalExam
-  }
+    components: { ModalExam }
 }
 </script>
 

@@ -15,18 +15,16 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex'
+import { mapGetters, mapMutations } from "vuex"
 
 export default {
-  computed:{
-    ...mapGetters(['storeTodoItems'])
-  },
-  methods:{
-    ...mapMutations({
-      removeTodo:'removeOneItem',
-      toggleComplete:'toggleOneComplete'
-      }),
-  },
+    computed: { ...mapGetters([`storeTodoItems`]) },
+    methods: {
+        ...mapMutations({
+            removeTodo: `removeOneItem`,
+            toggleComplete: `toggleOneComplete`
+        })
+    },
 }
 </script>
 

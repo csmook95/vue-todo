@@ -12,19 +12,13 @@ const storage = {
     }
 }
 
-const state = {
-    todoItems: storage.fetch(),
-}
+const state = { todoItems: storage.fetch(), }
 
-const getters = {
-    storeTodoItems(state) {
-        return state.todoItems
-    }
-}
+const getters = { storeTodoItems: state => state.todoItems }
 
 const mutations = {
     addOneItem(state, payload) {
-        if (payload !== '') {
+        if (payload !== ``) {
             const obj = { completed: false, item: payload }
             localStorage.setItem(payload, JSON.stringify(obj));
             state.todoItems.push(obj)

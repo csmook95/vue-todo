@@ -13,17 +13,7 @@ import TodoHeader from './components/TodoHeader.vue'
 import TodoInput from './components/TodoInput.vue'
 import TodoList from './components/TodoList.vue'
 
-export default {
-  data(){
-    return {
-    }
-  },
-  methods:{
-    
-  },
-
-  components: { TodoHeader, TodoList, TodoFooter, TodoInput }
-}
+export default { components: { TodoHeader, TodoList, TodoFooter, TodoInput } }
 </script>
 
 <style>
